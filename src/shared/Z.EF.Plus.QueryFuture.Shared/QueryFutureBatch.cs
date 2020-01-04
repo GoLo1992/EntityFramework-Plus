@@ -391,6 +391,10 @@ namespace Z.EntityFramework.Plus
                     var parameter = queryContext.ParameterValues[relationalParameter.InvariantName];
 
                     var oldValue = relationalParameter.InvariantName;
+                    if (isOracle || isOracleManaged)
+                    {
+                        oldValue = oldValue.Replace("__", "");
+                    }
                     var newValue = string.Concat("Z_", queryCount, "_", oldValue);
 
                     // CREATE parameter
